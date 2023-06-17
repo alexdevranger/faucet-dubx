@@ -19,9 +19,12 @@ export default function Faucet() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
+    console.log("provider");
     // disable submit button
-    setIsDisabled(true);
+    //setIsDisabled(true);
     // send request to faucet
+    console.log(hcaptchaToken);
     const response = await fetch("/api/faucet", {
       method: "POST",
       body: JSON.stringify({ address: event.currentTarget.address.value, hcaptchaToken }),

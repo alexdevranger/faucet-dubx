@@ -15,6 +15,7 @@ export default async function transferCoin(address: string): Promise<TransferCoi
       to: address,
       value: process.env.VALUE as string,
     });
+    console.log(transaction);
     return {
       success: true,
       message: transaction.hash,
