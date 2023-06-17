@@ -11,11 +11,14 @@ type TransferCoin = {
  */
 export default async function transferCoin(address: string): Promise<TransferCoin> {
   try {
+    console.log(wallet, "wallet");
+    console.log(address, "address");
+    console.log(process.env.VALUE, "value");
     const transaction = await wallet.sendTransaction({
       to: address,
       value: process.env.VALUE as string,
     });
-    console.log(transaction);
+    console.log("transaction", transaction);
     return {
       success: true,
       message: transaction.hash,
