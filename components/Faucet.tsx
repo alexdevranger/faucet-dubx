@@ -40,11 +40,11 @@ export default function Faucet() {
         <div className="w-full max-w-md space-y-8">
           <div>
             <img className="mx-auto h-12 w-auto" src="logo.webp" alt="Testnet Faucet" />
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Testnet Faucet</h2>
+            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Testnet DUBX Faucet</h2>
             <p className="mt-2 text-center text-sm text-gray-600">
-              <a href="https://github.com/orgs/0xDeploy/repositories" target="_blank" rel="noreferrer" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Open Source
-              </a>
+              
+                CLAIM YOUR TESTDUBX FOR DEVELOPMENT
+             
             </p>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
