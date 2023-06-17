@@ -22,12 +22,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const { address, hcaptchaToken } = JSON.parse(req.body);
   // verify address
   const isAddress = ethers.utils.isAddress(address);
+  console.log("address11", address);
   console.log("isAddress", isAddress);
   // if invalid address
   if (!isAddress) return res.status(400).json({ message: "Invalid Address" });
   // verify the captcha
   const verified = await verify(process.env.HCAPTCHA_SECRET as string, hcaptchaToken);
-  console.log(verified);
+  console.log("verified", verified);
   // if invalid captcha, return 401
   if (!verified.success) return res.status(401).json({ message: "Invalid Captcha" });
   // if cooldown is enough to recieve funds

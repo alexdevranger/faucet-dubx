@@ -39,28 +39,29 @@ export default function Faucet() {
 
   return (
     <>
-      <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex min-h-full h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <img className="mx-auto h-12 w-auto" src="logo.webp" alt="Testnet Faucet" />
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Testnet DUBX Faucet</h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
-              
+            <img className="mx-auto h-[15rem] w-auto" src="logo.webp" alt="Testnet Faucet" />
+            <h1 className="mt-10 text-center text-3xl sm:text-5xl font-bold tracking-tight text-white" style={{
+  backgroundImage: "url(https://crl2020.imgix.net/img/type-gradient.png?auto=format%2Ccompress)",
+  backgroundClip: "text",
+  color: "transparent", WebkitBackgroundClip: "text"}}>Testnet DUBX Faucet</h1>
+            <p className="mt-4 text-center text-sm text-white">
                 CLAIM YOUR TESTDUBX FOR DEVELOPMENT
-             
             </p>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
-                <input id="address" name="address" type="string" required className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="0xdD4c825203f97984e7867F11eeCc813A036089D1" />
+                <input id="address" name="address" type="string" required className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm placeholder-gray-400 my-8" placeholder="Address" />
               </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center my-8">
               <HCaptcha sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY as string} onVerify={(token, ekey) => handleVerificationSuccess(token, ekey)} />
             </div>
             <div>
-              <button disabled={isDisabled} type="submit" className="disabled:opacity-25 group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+              <button disabled={isDisabled} type="submit" className="disabled:opacity-50 group relative flex w-full justify-center rounded-md border border-transparent bg-[#00FDED] py-2 px-4 text-sm font-medium text-[#000] hover:bg-[#4a2084] hover:text-[#fff] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 my-8">
                 Request Funds
               </button>
             </div>
