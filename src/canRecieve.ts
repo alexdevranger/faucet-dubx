@@ -13,12 +13,10 @@ type CanRecieve = {
 export default async function canRecieve(address: string): Promise<CanRecieve> {
   // get timestamp in seconds
   const lastRecieve = await redis.get(address);
-  console.log("lastRecieve", lastRecieve);
   // if address never been transfered to
   if (lastRecieve === null) return { success: true, message: "🚢" };
   // now in seconds
   const now = Math.floor(Date.now() / 1000);
-  console.log("now", lastRecieve);
   // cooldown in seconds
   const cooldown = parseInt(process.env.COOLDOWN_HOURS as string) * 60 * 60;
   // if asked for funds after cooldown

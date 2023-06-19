@@ -22,23 +22,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const { address, hcaptchaToken } = JSON.parse(req.body);
   // verify address
   const isAddress = ethers.utils.isAddress(address);
-  console.log("address11", address);
-  console.log("isAddress", isAddress);
   // if invalid address
   if (!isAddress) return res.status(400).json({ message: "Invalid Address" });
   // verify the captcha
   const verified = await verify(process.env.HCAPTCHA_SECRET as string, hcaptchaToken);
-  console.log("verified", verified);
   // if invalid captcha, return 401
   if (!verified.success) return res.status(401).json({ message: "Invalid Captcha" });
   // if cooldown is enough to recieve funds
   const recieved = await canRecieve(address);
-  console.log("recieved", recieved);
   // if not enough time has passed
   if (!recieved.success) return res.status(400).json({ message: recieved.message });
   // transfer coin
   const transfer = await transferCoin(address);
-  console.log("transfer.success", transfer.success);
   // if transfer was unsuccessful
   if (!transfer.success) return res.status(400).json({ message: transfer.message });
   // update the last transfer timestamp to now
