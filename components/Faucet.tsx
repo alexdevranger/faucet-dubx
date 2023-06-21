@@ -19,15 +19,16 @@ export default function Faucet() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
-   
     // disable submit button
     //setIsDisabled(true);
     // send request to faucet
- 
+
     const response = await fetch("/api/faucet", {
       method: "POST",
-      body: JSON.stringify({ address: event.currentTarget.address.value, hcaptchaToken }),
+      body: JSON.stringify({
+        address: event.currentTarget.address.value,
+        hcaptchaToken,
+      }),
     });
     // parse response
     const data = await response.json();
@@ -42,26 +43,54 @@ export default function Faucet() {
       <div className="flex min-h-full h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <img className="mx-auto h-[15rem] w-auto" src="logo.webp" alt="Testnet Faucet" />
-            <h1 className="mt-10 text-center text-3xl sm:text-5xl font-bold tracking-tight text-white" style={{
-  backgroundImage: "url(https://crl2020.imgix.net/img/type-gradient.png?auto=format%2Ccompress)",
-  backgroundClip: "text",
-  color: "transparent", WebkitBackgroundClip: "text"}}>Testnet DUBX Faucet</h1>
+            <img
+              className="mx-auto h-[15rem] w-auto"
+              src="logo.webp"
+              alt="Testnet Faucet"
+            />
+            <h1
+              className="mt-10 text-center text-3xl sm:text-5xl font-bold tracking-tight text-white"
+              style={{
+                backgroundImage:
+                  "url(https://crl2020.imgix.net/img/type-gradient.png?auto=format%2Ccompress)",
+                backgroundClip: "text",
+                color: "transparent",
+                WebkitBackgroundClip: "text",
+              }}
+            >
+              Testnet DUBX Faucet
+            </h1>
             <p className="mt-4 text-center text-sm text-white">
-                CLAIM YOUR TESTDUBX FOR DEVELOPMENT
+              CLAIM YOUR TESTDUBX FOR DEVELOPMENT
             </p>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
-                <input id="address" name="address" type="string" required className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm placeholder-gray-400 my-8" placeholder="Address" />
+                <input
+                  id="address"
+                  name="address"
+                  type="string"
+                  required
+                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm placeholder-gray-400 my-8"
+                  placeholder="Address"
+                />
               </div>
             </div>
             <div className="flex justify-center my-8">
-              <HCaptcha sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY as string} onVerify={(token, ekey) => handleVerificationSuccess(token, ekey)} />
+              <HCaptcha
+                sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY as string}
+                onVerify={(token, ekey) =>
+                  handleVerificationSuccess(token, ekey)
+                }
+              />
             </div>
             <div>
-              <button disabled={isDisabled} type="submit" className="disabled:opacity-50 group relative flex w-full justify-center rounded-md border border-transparent bg-[#00FDED] py-2 px-4 text-sm font-medium text-[#000] hover:bg-[#4a2084] hover:text-[#fff] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 my-8">
+              <button
+                disabled={isDisabled}
+                type="submit"
+                className="disabled:opacity-50 group relative flex w-full justify-center rounded-md border border-transparent bg-[#00FDED] py-2 px-4 text-sm font-medium text-[#000] hover:bg-[#4a2084] hover:text-[#fff] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 my-8"
+              >
                 Request Funds
               </button>
             </div>
